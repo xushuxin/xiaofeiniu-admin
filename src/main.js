@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/index.css'//引入样式文件
 import axios from 'axios'
 
 /* 插件和属性设置*/
@@ -42,8 +42,14 @@ Vue.filter('currency',val=>{
   return '¥'+val.toFixed(2)
 })
 
+Vue.filter('tableStatus',val=>{
+  if(val==1) return '空闲';
+  if(val==2) return '预定';
+  if(val==3) return '占用';
+  if(val==0) return '其它';
+})
 new Vue({
   router,
-  store,
-  render: h => h(App)
+  store,//指定当前项目唯一的Vuex存储仓库对象，其中保存着可供所有组件共享的数据
+  render: h => h(App)//根据App组件创建<APP></APP>元素，挂载到#app内
 }).$mount('#app')

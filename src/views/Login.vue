@@ -16,7 +16,6 @@
           </el-form-item>
         </el-form>
       </div>
-      <div>{{$store.state.globalSettings}}</div>
     </el-card>
   </div>
 </template>
@@ -38,10 +37,8 @@ export default {
       //执行登录
       var aname = this.formData.aname;
       var apwd = this.formData.apwd;
-      var url =
-        this.$store.state.globalSettings.apiUrl +
-        `/admin/login/${aname}/${apwd}`;
-      if (aname != "" && apwd != "") {
+      var url =this.$store.state.globalSettings.apiUrl + `/admin/login/${aname}/${apwd}`;
+      if (aname.trim() != "" && apwd.trim() != "") {
         this.$axios
           .get(url)
           .then(res => {
